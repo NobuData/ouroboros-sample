@@ -11,6 +11,11 @@ def test_formats_seconds(capsys):
     assert capsys.readouterr().out == "1h 30m\n"
 
 
+def test_formats_zero_seconds(capsys):
+    assert main(["--format", "0"]) == 0
+    assert capsys.readouterr().out == "0s\n"
+
+
 def test_reports_bad_input_on_stderr(capsys):
     assert main(["soon"]) == 2
     captured = capsys.readouterr()
