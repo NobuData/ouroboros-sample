@@ -6,6 +6,7 @@ from durations import format_duration, parse
 @pytest.mark.parametrize(
     ("seconds", "text"),
     [
+        (0, "0s"),
         (45, "45s"),
         (60, "1m"),
         (3600, "1h"),
@@ -23,6 +24,6 @@ def test_refuses_a_negative_duration():
         format_duration(-1)
 
 
-@pytest.mark.parametrize("seconds", [1, 59, 61, 3599, 3601, 7322, 86399])
+@pytest.mark.parametrize("seconds", [0, 1, 59, 61, 3599, 3601, 7322, 86399])
 def test_round_trips(seconds):
     assert parse(format_duration(seconds)) == seconds

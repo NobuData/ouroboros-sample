@@ -66,6 +66,8 @@ def format_duration(seconds: int) -> str:
     """
     if seconds < 0:
         raise ValueError("a duration cannot be negative")
+    if seconds == 0:
+        return "0s"
 
     parts = []
     remaining = seconds
